@@ -1,0 +1,34 @@
+**********************************************************************************************************************
+*										                         SCRIPT DE PURGE 											                                   *
+*                                                Bynoix                                                             *  
+*                                                                                                                    * 
+*                                                                                                                    *
+*********************************************************************************************************************
+
+# Tout d’abord, nous allons créer des fichiers qui ont plus d’un an et moins d’un an grâce à la commande touch
+
+# changer la date du fichier
+
+touch -t [AAMMJJhhmm] fichier 
+
+#création du script
+
+touch supp_fichier.sh
+
+#collé le script
+
+#!/bin/bash
+
+NBJOURS="+365" # nombre de jours
+
+PATHFILES="lechemin" le chemin des fichiers 
+
+REGEXNAME="test*"
+cd /
+find $PATHFILES -name $REGEXNAME -type f -mtime $NBJOURS -exec rm -f {} \;
+
+chmod 700 supp_fichier.sh # donné les droits au script
+
+# lancé le script
+
+./supp_fichier.sh
